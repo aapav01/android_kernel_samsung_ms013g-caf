@@ -271,6 +271,10 @@ int mdss_mdp_smp_reserve(struct mdss_mdp_pipe *pipe)
 	 * allow SMP allocations to prevent composition failures.
 	 */
 	force_alloc = !(pipe->flags & MDP_BACKEND_COMPOSITION);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3d75da4... msm: mdss: Allow smp change during composition switch
 	mutex_lock(&mdss_mdp_smp_lock);
 	if (pipe->src_fmt->is_yuv || (pipe->flags & MDP_BACKEND_COMPOSITION)) {
 	for (i = (MAX_PLANES - 1); i >= ps.num_planes; i--) {
