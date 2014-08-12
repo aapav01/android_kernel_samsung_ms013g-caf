@@ -270,11 +270,7 @@ int mdss_mdp_smp_reserve(struct mdss_mdp_pipe *pipe)
 	 * On the contrary for non backend composition pipes we should
 	 * allow SMP allocations to prevent composition failures.
 	 */
-	force_alloc = !(pipe->flags & MDP_BACKEND_COMPOSITION);
-<<<<<<< HEAD
-=======
-
->>>>>>> 3d75da4... msm: mdss: Allow smp change during composition switch
+	force_alloc = pipe->flags & MDP_SMP_FORCE_ALLOC;
 	mutex_lock(&mdss_mdp_smp_lock);
 	if (pipe->src_fmt->is_yuv || (pipe->flags & MDP_BACKEND_COMPOSITION)) {
 	for (i = (MAX_PLANES - 1); i >= ps.num_planes; i--) {
