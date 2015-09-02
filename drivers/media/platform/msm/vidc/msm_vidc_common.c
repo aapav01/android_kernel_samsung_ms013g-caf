@@ -1808,13 +1808,13 @@ static int msm_vidc_load_resources(int flipped_state,
 		goto exit;
 	}
 	if (inst->core->resources.has_ocmem) {
+		mutex_lock(&inst->core->sync_lock);
 		height = max(inst->prop.height[CAPTURE_PORT],
 			inst->prop.height[OUTPUT_PORT]);
 		width = max(inst->prop.width[CAPTURE_PORT],
 			inst->prop.width[OUTPUT_PORT]);
 		ocmem_sz = get_ocmem_requirement(
 			height, width);
-		mutex_lock(&inst->core->sync_lock);
 		rc = msm_comm_scale_bus(inst->core, inst->session_type,
 					OCMEM_MEM);
 		mutex_unlock(&inst->core->sync_lock);
@@ -2824,7 +2824,7 @@ int msm_comm_try_set_prop(struct msm_vidc_inst *inst,
 
 	mutex_lock(&inst->sync_lock);
 	if (inst->state < MSM_VIDC_OPEN_DONE || inst->state >= MSM_VIDC_CLOSE) {
-		dprintk(VIDC_ERR, "skip set property\n");
+		dprintk(VIDC_ERR, "Not in proper state to set property\n");
 		rc = -EAGAIN;
 		goto exit;
 	}

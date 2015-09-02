@@ -1759,18 +1759,18 @@ static int try_set_ctrl(struct msm_vidc_inst *inst, struct v4l2_ctrl *ctrl)
 				dprintk(VIDC_ERR,
 					"Failed :Disabling OUTPUT port : %d\n",
 					rc);
-			break;
-		case V4L2_CID_MPEG_VIDC_VIDEO_CONCEAL_COLOR:
-			property_id = HAL_PARAM_VDEC_CONCEAL_COLOR;
-			property_val = ctrl->val;
-			pdata = &property_val;
-			break;				
+			break;			
 		default:
 			dprintk(VIDC_ERR,
 				"Failed : Unsupported multi stream setting\n");
 			rc = -ENOTSUPP;
 			break;
 		}
+		break;
+	case V4L2_CID_MPEG_VIDC_VIDEO_CONCEAL_COLOR:
+		property_id = HAL_PARAM_VDEC_CONCEAL_COLOR;
+		property_val = ctrl->val;
+		pdata = &property_val;
 		break;
 	default:
 		break;
