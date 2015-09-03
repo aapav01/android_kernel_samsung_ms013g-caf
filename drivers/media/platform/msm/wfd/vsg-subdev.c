@@ -264,7 +264,7 @@ static enum hrtimer_restart vsg_threshold_timeout_func(struct hrtimer *timer)
 		context->vsync_wait = false;
 	}
 
-	task = kzalloc(sizeof(*task), GFP_ATOMIC)
+	task = kzalloc(sizeof(*task), GFP_ATOMIC);
 	if (!task) {
 		WFD_MSG_ERR("Out of memory in %s", __func__);
 		goto threshold_err_bad_param;
@@ -277,6 +277,7 @@ static enum hrtimer_restart vsg_threshold_timeout_func(struct hrtimer *timer)
 		task->work_delayed = true;
 
 	queue_work(context->work_queue, &task->work);
+restart_timer:
 threshold_err_bad_param:
 	hrtimer_forward_now(&context->threshold_timer, ns_to_ktime(
 				max_frame_interval));
