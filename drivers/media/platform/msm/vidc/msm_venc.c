@@ -1577,10 +1577,16 @@ static int try_set_ctrl(struct msm_vidc_inst *inst, struct v4l2_ctrl *ctrl)
 			case V4L2_CID_MPEG_VIDC_VIDEO_RATE_CONTROL_VBR_CFR:
 				update_ctrl.val =
 					V4L2_MPEG_VIDEO_BITRATE_MODE_VBR;
+				break;
 			case V4L2_CID_MPEG_VIDC_VIDEO_RATE_CONTROL_CBR_VFR:
 			case V4L2_CID_MPEG_VIDC_VIDEO_RATE_CONTROL_CBR_CFR:
 				update_ctrl.val =
 					V4L2_MPEG_VIDEO_BITRATE_MODE_CBR;
+				break;
+			default:
+				dprintk(VIDC_ERR,
+					"Unknown Rate control method (%d)", ctrl->val);
+				break;
 			}
 
 			final_mode = ctrl->val;
