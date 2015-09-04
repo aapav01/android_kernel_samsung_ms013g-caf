@@ -66,14 +66,11 @@ struct vsg_context {
 	struct vsg_buf_info *last_buffer;
 	int mode;
 	int state;
-	bool vsync_wait;
-	struct timespec delayed_frame_interval;
 };
 
 struct vsg_work {
 	struct vsg_context *context;
 	struct work_struct work;
-	bool work_delayed;
 };
 
 struct vsg_encode_work {
