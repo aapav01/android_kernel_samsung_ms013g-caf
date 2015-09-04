@@ -64,8 +64,6 @@ u8 pre_csc_update = 0xFF;
 
 #define MEM_PROTECT_SD_CTRL 0xF
 
-#define OVERLAY_MAX 10
-
 struct sd_ctrl_req {
 	unsigned int enable;
 } __attribute__ ((__packed__));
